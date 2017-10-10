@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2968F0131F8D2FB4005681DD /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2968F0121F8D2FB4005681DD /* AboutViewController.swift */; };
+		2968F0171F8D32A4005681DD /* BullsEye.html in Resources */ = {isa = PBXBuildFile; fileRef = 2968F0161F8D32A4005681DD /* BullsEye.html */; };
 		364FF5A31F8CFF5000B54DBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364FF5A21F8CFF5000B54DBC /* AppDelegate.swift */; };
 		364FF5A51F8CFF5000B54DBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364FF5A41F8CFF5000B54DBC /* ViewController.swift */; };
 		364FF5A81F8CFF5000B54DBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 364FF5A61F8CFF5000B54DBC /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		2968F0121F8D2FB4005681DD /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		2968F0161F8D32A4005681DD /* BullsEye.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BullsEye.html; sourceTree = "<group>"; };
 		364FF59F1F8CFF5000B54DBC /* BullsEye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BullsEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		364FF5A21F8CFF5000B54DBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		364FF5A41F8CFF5000B54DBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		364FF5A11F8CFF5000B54DBC /* BullsEye */ = {
 			isa = PBXGroup;
 			children = (
+				2968F0161F8D32A4005681DD /* BullsEye.html */,
 				364FF5A21F8CFF5000B54DBC /* AppDelegate.swift */,
 				364FF5A41F8CFF5000B54DBC /* ViewController.swift */,
 				364FF5A61F8CFF5000B54DBC /* Main.storyboard */,
@@ -127,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				364FF5AD1F8CFF5000B54DBC /* LaunchScreen.storyboard in Resources */,
+				2968F0171F8D32A4005681DD /* BullsEye.html in Resources */,
 				364FF5AA1F8CFF5000B54DBC /* Assets.xcassets in Resources */,
 				364FF5A81F8CFF5000B54DBC /* Main.storyboard in Resources */,
 			);
