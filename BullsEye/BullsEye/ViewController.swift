@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         let action = UIAlertAction(title: "OK", style: .default) { _ in self.startNewRound() }
         alert.addAction(action)
 
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: false, completion: nil)
     }
 
 }
