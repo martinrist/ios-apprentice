@@ -34,7 +34,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        startNewRound()
+        startNewGame()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +47,12 @@ class ViewController: UIViewController {
         targetValue = 1 + Int(arc4random_uniform(100))
         currentValue = 50
         slider.value = Float(currentValue)
+    }
 
+    @IBAction func startNewGame() {
+        score = 0
+        round = 0
+        startNewRound()
     }
 
     @IBAction func sliderMoved(_ slider: UISlider) {
