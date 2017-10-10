@@ -55,11 +55,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showAlert() {
-        
+
         let difference = abs(currentValue - targetValue)
         let points = 100 - difference
-        score += points
-        
+        score = score + points + (difference == 0 ? 100 : 0)
+
         let title: String
         if difference == 0 {
             title = "Perfect!"
