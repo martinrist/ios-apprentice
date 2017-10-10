@@ -12,11 +12,23 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var targetLabel: UILabel!
-
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var roundLabel: UILabel!
+    
     var currentValue = 0
     var targetValue = 0 {
         didSet {
             targetLabel.text = String(targetValue)
+        }
+    }
+    var score = 0 {
+        didSet {
+            scoreLabel.text = String(score)
+        }
+    }
+    var round = 0 {
+        didSet {
+            roundLabel.text = String(round)
         }
     }
 
@@ -31,6 +43,7 @@ class ViewController: UIViewController {
     }
 
     func startNewRound() {
+        round += 1
         targetValue = 1 + Int(arc4random_uniform(100))
         currentValue = 50
         slider.value = Float(currentValue)
@@ -45,6 +58,7 @@ class ViewController: UIViewController {
         
         let difference = abs(currentValue - targetValue)
         let points = 100 - difference
+        score += points
         
         let message = "You scored \(points) points"
         let alert = UIAlertController(title: "Results", message: message, preferredStyle: .alert)
