@@ -42,9 +42,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showAlert() {
-        let message = "The value of the slider is: \(currentValue)" +
-        "\nThe target value is: \(targetValue)"
-        let alert = UIAlertController(title: "Hello World!", message: message, preferredStyle: .alert)
+        
+        let difference = abs(currentValue - targetValue)
+        let points = 100 - difference
+        
+        let message = "You scored \(points) points"
+        let alert = UIAlertController(title: "Results", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { _ in self.startNewRound() }
         alert.addAction(action)
 
