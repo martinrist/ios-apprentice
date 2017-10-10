@@ -34,20 +34,20 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let thumbImageNormal = UIImage(named: "SliderThumb-Normal")!
+
+        let thumbImageNormal = #imageLiteral(resourceName: "SliderThumb-Normal")
         slider.setThumbImage(thumbImageNormal, for: .normal)
-        
-        let thumbImageHighlighted = UIImage(named: "SliderThumb-Highlighted")!
+
+        let thumbImageHighlighted = #imageLiteral(resourceName: "SliderThumb-Highlighted")
         slider.setThumbImage(thumbImageHighlighted, for: .highlighted)
-        
+
         let insets = UIEdgeInsetsMake(0, 14, 0, 14)
-        
-        let trackLeftImage = UIImage(named: "SliderTrackLeft")!
+
+        let trackLeftImage = #imageLiteral(resourceName: "SliderTrackLeft")
         let trackLeftResizeable = trackLeftImage.resizableImage(withCapInsets: insets)
         slider.setMinimumTrackImage(trackLeftResizeable, for: .normal)
-        
-        let trackRightImage = UIImage(named: "SliderTrackRight")!
+
+        let trackRightImage = #imageLiteral(resourceName: "SliderTrackRight")
         let trackRightResizeable = trackRightImage.resizableImage(withCapInsets: insets)
         slider.setMaximumTrackImage(trackRightResizeable, for: .normal)
 
