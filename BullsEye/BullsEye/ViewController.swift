@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var targetLabel: UILabel!
+
     var currentValue = 0
     var targetValue = 0
 
@@ -28,6 +30,11 @@ class ViewController: UIViewController {
         targetValue = 1 + Int(arc4random_uniform(100))
         currentValue = 50
         slider.value = Float(currentValue)
+        updateLabels()
+    }
+
+    func updateLabels() {
+        targetLabel.text = String(targetValue)
     }
 
     @IBAction func sliderMoved(_ slider: UISlider) {
@@ -38,11 +45,10 @@ class ViewController: UIViewController {
         let message = "The value of the slider is: \(currentValue)" +
         "\nThe target value is: \(targetValue)"
         let alert = UIAlertController(title: "Hello World!", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let action = UIAlertAction(title: "OK", style: .default) { _ in self.startNewRound() }
         alert.addAction(action)
 
         present(alert, animated: true, completion: nil)
-        startNewRound()
     }
 
 }
