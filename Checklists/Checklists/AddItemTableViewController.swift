@@ -8,22 +8,30 @@
 
 import UIKit
 
+protocol AddItemTableViewControllerDelegate: class {
+    func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController)
+    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+}
+
 class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
 
+    weak var delegate: AddItemTableViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
     }
 
     @IBAction func cancel() {
-        navigationController?.popViewController(animated: true)
+        delegate?.addItemTableViewControllerDidCancel(self)
     }
 
     @IBAction func done() {
-        navigationController?.popViewController(animated: true)
+        let newItem = ChecklistItem(text: textField.text!, checked: false)
+        delegate?.addItemTableViewController(self, didFinishAdding: newItem)
     }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
