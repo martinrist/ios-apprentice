@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChecklistViewController: UITableViewController, AddItemTableViewControllerDelegate {
+class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
 
     var items = [ChecklistItem]()
 
@@ -73,11 +73,11 @@ class ChecklistViewController: UITableViewController, AddItemTableViewController
 
     }
 
-    func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController) {
+    func addItemTableViewControllerDidCancel(_ controller: AddItemViewController) {
         navigationController?.popViewController(animated: true)
     }
     
-    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem) {
+    func addItemTableViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
         let newRowIndex = items.count
         items.append(item)
         
@@ -89,7 +89,7 @@ class ChecklistViewController: UITableViewController, AddItemTableViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItem" {
-            let controller = segue.destination as! AddItemTableViewController
+            let controller = segue.destination as! AddItemViewController
             controller.delegate = self
         }
     }

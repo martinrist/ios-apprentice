@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol AddItemTableViewControllerDelegate: class {
-    func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController)
-    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+protocol AddItemViewControllerDelegate: class {
+    func addItemTableViewControllerDidCancel(_ controller: AddItemViewController)
+    func addItemTableViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
 }
 
-class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
+class AddItemViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
 
-    weak var delegate: AddItemTableViewControllerDelegate?
+    weak var delegate: AddItemViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
