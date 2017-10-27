@@ -75,17 +75,27 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
 
     }
 
-    func addItemTableViewControllerDidCancel(_ controller: AddItemViewController) {
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
         navigationController?.popViewController(animated: true)
     }
     
-    func addItemTableViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
         let newRowIndex = items.count
         items.append(item)
         
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         
+        navigationController?.popViewController(animated: true)
+    }
+
+    func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem) {
+        if let index = items.index(of: item) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                configureText(for: cell, with: item)
+            }
+        }
         navigationController?.popViewController(animated: true)
     }
     
