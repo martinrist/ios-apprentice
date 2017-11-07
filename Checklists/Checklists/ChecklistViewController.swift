@@ -11,11 +11,13 @@ import UIKit
 class ChecklistViewController: UITableViewController, ItemDetailViewControllerDelegate {
 
     var items = [ChecklistItem]()
+    var checklist: Checklist!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadChecklistItems()
         navigationItem.largeTitleDisplayMode = .never
+        title = checklist.name
     }
 
     override func didReceiveMemoryWarning() {
