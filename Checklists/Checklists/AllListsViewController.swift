@@ -15,14 +15,8 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        lists.append(Checklist(name: "Birthdays"))
-        lists.append(Checklist(name: "Groceries"))
-        lists.append(Checklist(name: "Cool Apps"))
-        lists.append(Checklist(name: "To Do"))
 
-        for list in lists {
-            list.items.append(ChecklistItem(text: "Item for \(list.name)", checked: false))
-        }
+        loadChecklists()
     }
 
     override func didReceiveMemoryWarning() {
@@ -108,5 +102,38 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
             }
         }
         navigationController?.popViewController(animated: true)
+    }
+
+
+    // MARK:- Load and save checklists
+
+    func documentsDirectory() -> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("Checklists.plist")
+    }
+
+    func saveChecklists() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(lists)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding item array!")
+        }
+    }
+
+    func loadChecklists() {
+        let path = dataFilePath()
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            do {
+                lists = try decoder.decode([Checklist].self, from: data)
+            } catch {
+                print("Error decoding item array!")
+            }
+        }
     }
 }
