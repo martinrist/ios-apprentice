@@ -70,7 +70,7 @@
         <!--Add Checklist-->
         <scene sceneID="CIH-7V-Bbh">
             <objects>
-                <tableViewController id="xWr-8R-cIB" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListDetailViewController" id="xWr-8R-cIB" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="xTa-ct-coU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -211,7 +211,6 @@
                     </navigationItem>
                     <connections>
                         <segue destination="i6L-KT-iv3" kind="show" identifier="ShowChecklist" id="86y-8T-YIO"/>
-                        <segue destination="xWr-8R-cIB" kind="show" identifier="EditChecklist" id="UGc-Y7-p9q"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAf-qq-8zR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -239,6 +238,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="RvF-HN-D5g"/>
-        <segue reference="UGc-Y7-p9q"/>
     </inferredMetricsTieBreakers>
 </document>
