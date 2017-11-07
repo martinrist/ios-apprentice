@@ -19,6 +19,10 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         lists.append(Checklist(name: "Groceries"))
         lists.append(Checklist(name: "Cool Apps"))
         lists.append(Checklist(name: "To Do"))
+
+        for list in lists {
+            list.items.append(ChecklistItem(text: "Item for \(list.name)", checked: false))
+        }
     }
 
     override func didReceiveMemoryWarning() {
