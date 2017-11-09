@@ -14,14 +14,17 @@ protocol ListDetailViewControllerDelegate: class {
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditing checklist: Checklist)
 }
 
-class ListDetailViewController: UITableViewController, UITextFieldDelegate {
+class ListDetailViewController: UITableViewController, UITextFieldDelegate,
+    IconPickerViewControllerDelegate {
 
+    @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
 
     weak var delegate: ListDetailViewControllerDelegate?
 
     var checklistToEdit: Checklist?
+    var iconName = "Folder"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +35,10 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
             title = "Edit Checklist"
             textField.text = checklist.name
             doneBarButton.isEnabled = true
+            iconName = checklist.iconName
         }
+
+        iconImageView.image = UIImage(named: iconName)
     }
 
     // MARK:- Actions
@@ -58,7 +64,11 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK:- TableView Delegates
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+        if indexPath.section == 1 {
+            return indexPath
+        } else {
+            return nil
+        }
     }
 
     // MARK:- UITextField Delegates
@@ -68,5 +78,13 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
         let newText = oldText.replacingCharacters(in: stringRange, with: string)
         doneBarButton.isEnabled = !newText.isEmpty
         return true
+    }
+
+    // MARK:- Icon Picker View Controller delegate
+    func iconPicker(_ picker: IconPickerViewController, didPick iconName: String) {
+        self.iconName = iconName
+        iconImageView.image = UIImage(named: iconName)
+
+        navigationController?.popViewController(animated: true)
     }
 }
