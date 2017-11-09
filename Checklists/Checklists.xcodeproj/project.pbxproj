@@ -66,20 +66,44 @@
 		29E240661F9CE63B00D7A7AA /* Checklists */ = {
 			isa = PBXGroup;
 			children = (
-				29E240731F9CE63B00D7A7AA /* Info.plist */,
+				363DB8431FB485560023EBDA /* DataModels */,
+				363DB8441FB485780023EBDA /* ViewControllers */,
+				363DB8451FB4858B0023EBDA /* Resources */,
 				29E240671F9CE63B00D7A7AA /* AppDelegate.swift */,
-				29E2406B1F9CE63B00D7A7AA /* Main.storyboard */,
-				29E240701F9CE63B00D7A7AA /* LaunchScreen.storyboard */,
-				29E2406E1F9CE63B00D7A7AA /* Assets.xcassets */,
-				29358AD41FAF2017003F93A7 /* AllListsViewController.swift */,
-				3674CCF71FB1EDF900B25FC2 /* ListDetailViewController.swift */,
-				29E240691F9CE63B00D7A7AA /* ChecklistViewController.swift */,
-				29E2407B1F9CFC3F00D7A7AA /* ItemDetailViewController.swift */,
+				29E240731F9CE63B00D7A7AA /* Info.plist */,
+			);
+			path = Checklists;
+			sourceTree = "<group>";
+		};
+		363DB8431FB485560023EBDA /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
 				3674CCF91FB2014600B25FC2 /* DataModel.swift */,
 				29E240791F9CF22100D7A7AA /* ChecklistItem.swift */,
 				3653992B1FB1E650001978DD /* Checklist.swift */,
 			);
-			path = Checklists;
+			path = DataModels;
+			sourceTree = "<group>";
+		};
+		363DB8441FB485780023EBDA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				29358AD41FAF2017003F93A7 /* AllListsViewController.swift */,
+				3674CCF71FB1EDF900B25FC2 /* ListDetailViewController.swift */,
+				29E240691F9CE63B00D7A7AA /* ChecklistViewController.swift */,
+				29E2407B1F9CFC3F00D7A7AA /* ItemDetailViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		363DB8451FB4858B0023EBDA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				29E2406E1F9CE63B00D7A7AA /* Assets.xcassets */,
+				29E240701F9CE63B00D7A7AA /* LaunchScreen.storyboard */,
+				29E2406B1F9CE63B00D7A7AA /* Main.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
