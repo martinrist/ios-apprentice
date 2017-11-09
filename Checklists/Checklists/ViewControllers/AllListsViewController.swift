@@ -50,6 +50,7 @@ class AllListsViewController: UITableViewController,
         let cell = makeCell(for: tableView)
         let checklist = dataModel.lists[indexPath.row]
         cell.textLabel!.text = checklist.name
+        cell.imageView!.image = UIImage(named: checklist.iconName)
 
         let count = checklist.countUncheckedItems()
 
