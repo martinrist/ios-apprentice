@@ -27,6 +27,13 @@ class ChecklistItem: NSObject, Codable {
         checked = !checked
     }
 
+    func dueDateText() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: dueDate)
+    }
+
     func scheduleNotification() {
         removeNotification()
         if shouldRemind && dueDate > Date() {

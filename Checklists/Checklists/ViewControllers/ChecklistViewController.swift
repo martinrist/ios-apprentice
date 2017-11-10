@@ -42,19 +42,17 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     }
 
     func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
-        
-        let label = cell.viewWithTag(1001) as! UILabel
-        label.textColor = view.tintColor
+
         if item.checked {
-            label.text = "✓"
+            cell.imageView!.image = UIImage(named: "Tick")
         } else {
-            label.text = ""
+            cell.imageView!.image = UIImage(named: "No Icon")
         }
     }
 
     func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
-        let label = cell.viewWithTag(1000) as! UILabel
-        label.text = item.text
+        cell.textLabel!.text = item.text
+        cell.detailTextLabel!.text = "Due: \(item.dueDateText())"
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
