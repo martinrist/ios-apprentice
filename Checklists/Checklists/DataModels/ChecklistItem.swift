@@ -10,11 +10,17 @@ import Foundation
 import UserNotifications
 
 class ChecklistItem: NSObject, Codable {
+
+    // MARK:- Properties
+
     var text = ""
     var checked = false
     var dueDate = Date()
     var shouldRemind = false
     var itemID: Int
+
+
+    // MARK:- Lifecycle
 
     init(text: String, checked: Bool = false) {
         self.text = text
@@ -22,6 +28,13 @@ class ChecklistItem: NSObject, Codable {
         self.itemID = DataModel.nextChecklistItemID()
         super.init()
     }
+
+    deinit {
+        removeNotification()
+    }
+
+
+    // MARK:- Utilities
 
     func toggleChecked() {
         checked = !checked
@@ -33,6 +46,9 @@ class ChecklistItem: NSObject, Codable {
         formatter.timeStyle = .short
         return formatter.string(from: dueDate)
     }
+
+
+    // MARK:- Notification Support
 
     func scheduleNotification() {
         removeNotification()
@@ -59,7 +75,4 @@ class ChecklistItem: NSObject, Codable {
         centre.removePendingNotificationRequests(withIdentifiers: ["\(itemID)"])
     }
 
-    deinit {
-        removeNotification()
-    }
 }

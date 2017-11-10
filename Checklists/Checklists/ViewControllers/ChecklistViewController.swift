@@ -10,7 +10,12 @@ import UIKit
 
 class ChecklistViewController: UITableViewController, ItemDetailViewControllerDelegate {
 
+    // MARK:- Properties
+
     var checklist: Checklist!
+
+
+    // MARK:- View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +27,24 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+
+    // MARK:- Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItem" {
+            let controller = segue.destination as! ItemDetailViewController
+            controller.delegate = self
+        } else if segue.identifier == "EditItem" {
+            let controller = segue.destination as! ItemDetailViewController
+            controller.delegate = self
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.currentItem = checklist.items[indexPath.row]
+            }
+        }
+    }
+
+    // MARK:- TableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return checklist.items.count
@@ -66,6 +89,9 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
 
     }
 
+
+    // MARK:- ItemDetailViewControllerDelegate
+
     func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
@@ -90,19 +116,6 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         checklist.sortItems()
         tableView.reloadData()
         navigationController?.popViewController(animated: true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddItem" {
-            let controller = segue.destination as! ItemDetailViewController
-            controller.delegate = self
-        } else if segue.identifier == "EditItem" {
-            let controller = segue.destination as! ItemDetailViewController
-            controller.delegate = self
-            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
-                controller.itemToEdit = checklist.items[indexPath.row]
-            }
-        }
     }
 
 }

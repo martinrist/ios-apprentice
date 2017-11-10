@@ -12,7 +12,11 @@ class AllListsViewController: UITableViewController,
                               ListDetailViewControllerDelegate,
                               UINavigationControllerDelegate {
 
+    // MARK:- Properties
     var dataModel: DataModel!
+
+
+    // MARK:- View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +39,22 @@ class AllListsViewController: UITableViewController,
             performSegue(withIdentifier: "ShowChecklist", sender: checklist)
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+
+
+    // MARK:- Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowChecklist" {
+            let controller = segue.destination as! ChecklistViewController
+            controller.checklist = sender as! Checklist
+        } else if segue.identifier == "AddChecklist" {
+            let controller = segue.destination as! ListDetailViewController
+            controller.delegate = self
+        }
     }
 
-    // MARK: - Table view data source
+
+    // MARK: - TableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataModel.lists.count
@@ -74,7 +88,10 @@ class AllListsViewController: UITableViewController,
             return UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
         }
     }
-    
+
+
+    // MARK:- TableViewDelegate
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataModel.indexOfSelectedChecklist = indexPath.row
         let checklist = dataModel.lists[indexPath.row]
@@ -88,16 +105,6 @@ class AllListsViewController: UITableViewController,
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowChecklist" {
-            let controller = segue.destination as! ChecklistViewController
-            controller.checklist = sender as! Checklist
-        } else if segue.identifier == "AddChecklist" {
-            let controller = segue.destination as! ListDetailViewController
-            controller.delegate = self
-        }
-    }
-
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let controller = storyboard!.instantiateViewController(withIdentifier: "ListDetailViewController") as! ListDetailViewController
         controller.delegate = self
@@ -108,7 +115,9 @@ class AllListsViewController: UITableViewController,
         navigationController?.pushViewController(controller, animated: true)
     }
 
-    //MARK:- AllListsViewController delegate
+
+    // MARK:- AllListsViewControllerDelegate
+
     func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
@@ -128,7 +137,8 @@ class AllListsViewController: UITableViewController,
         navigationController?.popViewController(animated: true)
     }
 
-    //MARK:- UINavigationControllerDelegate methods
+    //MARK:- UINavigationControllerDelegate
+
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
 
         // Was the 'Back' button tapped?
