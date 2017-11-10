@@ -73,10 +73,10 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ChecklistItem) {
         let newRowIndex = checklist.items.count
         checklist.items.append(item)
-        
+        checklist.sortItems()
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
-        
+        tableView.reloadData()
         navigationController?.popViewController(animated: true)
     }
 
@@ -87,6 +87,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
                 configureText(for: cell, with: item)
             }
         }
+        checklist.sortItems()
+        tableView.reloadData()
         navigationController?.popViewController(animated: true)
     }
     

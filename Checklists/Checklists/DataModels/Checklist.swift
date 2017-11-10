@@ -23,4 +23,10 @@ class Checklist: NSObject, Codable {
     func countUncheckedItems() -> Int {
         return items.filter({ !$0.checked }).count
     }
+
+    func sortItems() {
+        items.sort(by: { item1, item2 in
+            return item1.dueDate.compare(item2.dueDate) == .orderedAscending
+        })
+    }
 }
