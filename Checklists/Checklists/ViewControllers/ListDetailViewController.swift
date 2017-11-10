@@ -50,9 +50,10 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate,
     @IBAction func done() {
         if let checklist = checklistToEdit {
             checklist.name = textField.text!
+            checklist.iconName = iconName
             delegate?.listDetailViewController(self, didFinishEditing: checklist)
         } else {
-            let checklist = Checklist(name: textField.text!)
+            let checklist = Checklist(name: textField.text!, iconName: iconName)
             delegate?.listDetailViewController(self, didFinishAdding: checklist)
         }
     }
@@ -86,5 +87,13 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate,
         iconImageView.image = UIImage(named: iconName)
 
         navigationController?.popViewController(animated: true)
+    }
+
+    // MARK:- Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PickIcon" {
+            let controller = segue.destination as! IconPickerViewController
+            controller.delegate = self
+        }
     }
 }
