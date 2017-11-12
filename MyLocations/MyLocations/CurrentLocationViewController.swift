@@ -13,7 +13,9 @@ class CurrentLocationViewController: UIViewController,
                                      CLLocationManagerDelegate {
 
     // MARK:- Properties
+
     let locationManager = CLLocationManager()
+    var location: CLLocation?
 
 
     // MARK:- Outlets
@@ -57,17 +59,12 @@ class CurrentLocationViewController: UIViewController,
         present(alert, animated: true, completion: nil)
     }
 
-    
+
     // MARK:- View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        updateLabels()
     }
 
 
@@ -80,6 +77,26 @@ class CurrentLocationViewController: UIViewController,
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last!
         print("didUpdateLocation \(newLocation)")
+
+        location = newLocation
+
+        updateLabels()
+    }
+
+    func updateLabels() {
+        if let location = location {
+            latitudeLabel.text = String(format: "%.8f", location.coordinate.latitude)
+            longitudeLabel.text = String(format: "%.8f", location.coordinate.longitude)
+
+            tagButton.isHidden = false
+            messageLabel.text = ""
+        } else {
+            latitudeLabel.text = ""
+            longitudeLabel.text = ""
+            addressLabel.text = ""
+            tagButton.isHidden = true
+            messageLabel.text = "Tap 'Get My Location' to Start"
+        }
     }
 
 
