@@ -24,6 +24,8 @@ class CurrentLocationViewController: UIViewController,
     var performingReverseGeocoding = false
     var lastGeocodingError: Error?
 
+    var timer: Timer?
+
 
     // MARK:- Outlets
     
@@ -98,8 +100,9 @@ class CurrentLocationViewController: UIViewController,
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
         let newLocation = locations.last!
-        print("didUpdateLocation \(newLocation)")
+        print("didUpdateLocations \(newLocation)")
 
         if newLocation.timestamp.timeIntervalSinceNow < -5 {
             return
@@ -109,34 +112,51 @@ class CurrentLocationViewController: UIViewController,
             return
         }
 
+        var distance = CLLocationDistance(Double.greatestFiniteMagnitude)
+
+        if let location = location {
+            distance = newLocation.distance(from: location)
+        }
+
         if location == nil || location!.horizontalAccuracy > newLocation.horizontalAccuracy {
             lastLocationError = nil
             location = newLocation
-
             if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
-                print ("*** We're done!")
+                print("*** We're done!")
                 stopLocationManager()
+                if distance > 0 {
+                    performingReverseGeocoding = false
+                }
             }
-            updateLabels()
 
+            updateLabels()
             if !performingReverseGeocoding {
                 print("*** Going to geocode")
-                performingReverseGeocoding = true
-                geocoder.reverseGeocodeLocation(newLocation, completionHandler:
-                    { placemarks, error in
-                        self.lastGeocodingError = error
-                        if error == nil, let p = placemarks, !p.isEmpty {
-                            self.placemark = p.last!
-                        } else {
-                            self.placemark = nil
-                        }
 
-                        self.performingReverseGeocoding = false
-                        self.updateLabels()
+                performingReverseGeocoding = true
+
+                geocoder.reverseGeocodeLocation(newLocation, completionHandler: {
+                    placemarks, error in
+                    self.lastGeocodingError = error
+                    if error == nil, let p = placemarks, !p.isEmpty {
+                        self.placemark = p.last!
+                    } else {
+                        self.placemark = nil
+                    }
+
+                    self.performingReverseGeocoding = false
+                    self.updateLabels()
                 })
             }
-        }
 
+        } else if distance < 1 {
+            let timeInterval = newLocation.timestamp.timeIntervalSince(location!.timestamp)
+            if timeInterval > 10 {
+                print("*** Force done!")
+                stopLocationManager()
+                updateLabels()
+            }
+        }
     }
 
 
@@ -148,6 +168,8 @@ class CurrentLocationViewController: UIViewController,
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
             updatingLocation = true
+
+            timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(didTimeOut), userInfo: nil, repeats: false)
         }
     }
 
@@ -156,6 +178,9 @@ class CurrentLocationViewController: UIViewController,
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
             updatingLocation = false
+            if let timer = timer {
+                timer.invalidate()
+            }
         }
     }
 
@@ -239,5 +264,13 @@ class CurrentLocationViewController: UIViewController,
         return line1 + "\n" + line2
     }
 
+    @objc func didTimeOut() {
+        print("*** Time out")
+        if location == nil {
+            stopLocationManager()
+            lastLocationError = NSError(domain: "MyLocationsErrorDomain", code: 1, userInfo: nil)
+            updateLabels()
+        }
+    }
 }
 
