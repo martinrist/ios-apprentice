@@ -71,6 +71,23 @@ class LocationDetailsViewController: UITableViewController {
         }
 
         dateLabel.text = format(date: Date())
+
+        // Hide the keyboard
+        let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        gestureRecogniser.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(gestureRecogniser)
+    }
+
+    @objc func hideKeyboard(_ gestureRecogniser: UIGestureRecognizer) {
+        let point = gestureRecogniser.location(in: tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+
+        if indexPath != nil && indexPath!.section == 0
+            && indexPath!.row == 0 {
+            return
+        }
+        descriptionTextView.resignFirstResponder()
+
     }
 
 
@@ -87,6 +104,20 @@ class LocationDetailsViewController: UITableViewController {
             return addressLabel.frame.size.height + 20
         } else {
             return 44
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.section == 0 || indexPath.section == 1 {
+            return indexPath
+        } else {
+            return nil
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            descriptionTextView.becomeFirstResponder()
         }
     }
 
