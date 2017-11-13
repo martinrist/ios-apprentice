@@ -23,6 +23,7 @@ class LocationDetailsViewController: UITableViewController {
 
     var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     var placemark: CLPlacemark?
+    var categoryName = "No Category"
 
 
     // MARK:- Outlets
@@ -45,6 +46,12 @@ class LocationDetailsViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
 
+    @IBAction func categoryPickerDidPickCategory(_ segue: UIStoryboardSegue) {
+        let controller = segue.source as! CategoryPickerViewController
+        categoryName  = controller.selectedCategoryName
+        categoryLabel.text = categoryName
+    }
+
 
     // MARK:- View Lifecycle
 
@@ -52,7 +59,7 @@ class LocationDetailsViewController: UITableViewController {
         super.viewDidLoad()
 
         descriptionTextView.text = ""
-        categoryLabel.text = ""
+        categoryLabel.text = categoryName
 
         latitudeLabel.text = String(format: "%.8f", coordinate.latitude)
         longitudeLabel.text = String(format: "%.8f", coordinate.longitude)
@@ -74,7 +81,7 @@ class LocationDetailsViewController: UITableViewController {
         if indexPath.section == 0 && indexPath.row == 0 {
             return 88
         } else if indexPath.section == 2 && indexPath.row == 2 {
-            addressLabel.frame.size = CGSize(width: view.bounds.size.width - 120, height: 10000)
+                addressLabel.frame.size = CGSize(width: view.bounds.size.width - 120, height: 10000)
             addressLabel.sizeToFit()
             addressLabel.frame.origin.x = view.bounds.size.width - addressLabel.frame.size.width - 16
             return addressLabel.frame.size.height + 20
@@ -82,6 +89,17 @@ class LocationDetailsViewController: UITableViewController {
             return 44
         }
     }
+
+
+    // MARK:- Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PickCategory" {
+            let controller = segue.destination as! CategoryPickerViewController
+            controller.selectedCategoryName = categoryName
+        }
+    }
+
 
     // MARK:- Helper functions
 

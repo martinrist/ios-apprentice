@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29331D981FBA0439002F5E8E /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29331D971FBA0439002F5E8E /* LocationDetailsViewController.swift */; };
+		29331D9A1FBA0EC7002F5E8E /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29331D991FBA0EC7002F5E8E /* CategoryPickerViewController.swift */; };
 		296E893D1FB87CD90086EF08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296E893C1FB87CD90086EF08 /* AppDelegate.swift */; };
 		296E893F1FB87CD90086EF08 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296E893E1FB87CD90086EF08 /* CurrentLocationViewController.swift */; };
 		296E89411FB87CD90086EF08 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296E89401FB87CD90086EF08 /* SecondViewController.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		29331D971FBA0439002F5E8E /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
+		29331D991FBA0EC7002F5E8E /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
 		296E89391FB87CD90086EF08 /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		296E893C1FB87CD90086EF08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		296E893E1FB87CD90086EF08 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				296E89471FB87CD90086EF08 /* LaunchScreen.storyboard */,
 				296E894A1FB87CD90086EF08 /* Info.plist */,
 				29331D971FBA0439002F5E8E /* LocationDetailsViewController.swift */,
+				29331D991FBA0EC7002F5E8E /* CategoryPickerViewController.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 				29331D981FBA0439002F5E8E /* LocationDetailsViewController.swift in Sources */,
 				296E89411FB87CD90086EF08 /* SecondViewController.swift in Sources */,
 				296E893D1FB87CD90086EF08 /* AppDelegate.swift in Sources */,
+				29331D9A1FBA0EC7002F5E8E /* CategoryPickerViewController.swift in Sources */,
 				296E893F1FB87CD90086EF08 /* CurrentLocationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
