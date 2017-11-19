@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let controller = navController.viewControllers.first as! CurrentLocationViewController
             controller.managedObjectContext = managedObjectContext
         }
+        print(applicationDocumentsDirectory)
         return true
     }
 
