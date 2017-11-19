@@ -33,7 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK:- Application Lifecycle
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        let tabController = window!.rootViewController as! UITabBarController
+
+        if let tabViewControllers = tabController.viewControllers {
+            let navController = tabViewControllers[0] as! UINavigationController
+            let controller = navController.viewControllers.first as! CurrentLocationViewController
+            controller.managedObjectContext = managedObjectContext
+        }
         return true
     }
 
