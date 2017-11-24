@@ -17,6 +17,7 @@
 		296E89441FB87CD90086EF08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 296E89421FB87CD90086EF08 /* Main.storyboard */; };
 		296E89461FB87CD90086EF08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 296E89451FB87CD90086EF08 /* Assets.xcassets */; };
 		296E89491FB87CD90086EF08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 296E89471FB87CD90086EF08 /* LaunchScreen.storyboard */; };
+		297DEB7D1FC898CF006176C7 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297DEB7C1FC898CF006176C7 /* LocationsViewController.swift */; };
 		3660465B1FBF33B8000B3014 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 366046591FBF33B8000B3014 /* DataModel.xcdatamodeld */; };
 		3660465E1FBF3553000B3014 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3660465C1FBF3553000B3014 /* Location+CoreDataClass.swift */; };
 		3660465F1FBF3553000B3014 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3660465D1FBF3553000B3014 /* Location+CoreDataProperties.swift */; };
@@ -35,6 +36,7 @@
 		296E89451FB87CD90086EF08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		296E89481FB87CD90086EF08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		296E894A1FB87CD90086EF08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		297DEB7C1FC898CF006176C7 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		3660465A1FBF33B8000B3014 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3660465C1FBF3553000B3014 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3660465D1FBF3553000B3014 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				29331D9B1FBA152E002F5E8E /* HudView.swift */,
 				29331D9D1FBA1A7B002F5E8E /* Functions.swift */,
 				366046591FBF33B8000B3014 /* DataModel.xcdatamodeld */,
+				297DEB7C1FC898CF006176C7 /* LocationsViewController.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				3660465B1FBF33B8000B3014 /* DataModel.xcdatamodeld in Sources */,
 				296E89411FB87CD90086EF08 /* SecondViewController.swift in Sources */,
 				29331D9C1FBA152E002F5E8E /* HudView.swift in Sources */,
+				297DEB7D1FC898CF006176C7 /* LocationsViewController.swift in Sources */,
 				3660465F1FBF3553000B3014 /* Location+CoreDataProperties.swift in Sources */,
 				29331D9E1FBA1A7B002F5E8E /* Functions.swift in Sources */,
 				296E893D1FB87CD90086EF08 /* AppDelegate.swift in Sources */,
