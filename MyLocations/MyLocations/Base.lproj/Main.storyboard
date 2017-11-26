@@ -404,6 +404,7 @@
                                 <connections>
                                     <outlet property="addressLabel" destination="ng2-iN-XCL" id="5uY-wY-lpO"/>
                                     <outlet property="descriptionLabel" destination="AWa-tJ-pqg" id="nzC-Aa-y69"/>
+                                    <segue destination="3TI-ES-ad1" kind="show" identifier="EditLocation" id="tzF-ub-9vD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -416,7 +417,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ucb-Za-2it" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1732.5" y="413.02816901408454"/>
+            <point key="canvasLocation" x="1493" y="413"/>
         </scene>
         <!--Locations-->
         <scene sceneID="7hp-xc-5wP">
@@ -458,4 +459,7 @@
     <resources>
         <image name="first" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="tzF-ub-9vD"/>
+    </inferredMetricsTieBreakers>
 </document>
