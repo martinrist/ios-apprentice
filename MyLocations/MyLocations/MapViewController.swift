@@ -45,7 +45,19 @@ class MapViewController: UIViewController {
         }
     }
 
-    
+
+    // MARK:- Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditLocation" {
+            let controller = segue.destination as! LocationDetailsViewController
+            controller.managedObjectContext = managedObjectContext
+
+            let button = sender as! UIButton
+            let location = locations[button.tag]
+            controller.locationToEdit = location
+        }
+    }
+
     // MARK:- Private methods
     func updateLocations() {
         mapView.removeAnnotations(locations)
@@ -95,7 +107,7 @@ class MapViewController: UIViewController {
     }
 
     @objc func showLocationDetails(_ sender: UIButton) {
-
+        performSegue(withIdentifier: "EditLocation", sender: sender)
     }
 }
 

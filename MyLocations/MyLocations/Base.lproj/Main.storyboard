@@ -308,7 +308,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zw1-t9-XFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2700" y="-348"/>
+            <point key="canvasLocation" x="2766" y="-104"/>
         </scene>
         <!--Category Picker View Controller-->
         <scene sceneID="gv7-dY-NUT">
@@ -349,7 +349,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNc-Ti-j8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rz7-S4-qJb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3551" y="-349"/>
+            <point key="canvasLocation" x="3542" y="-104"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -470,6 +470,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="Fmx-MV-mKM" id="1mW-k9-NKW"/>
+                        <segue destination="3TI-ES-ad1" kind="show" identifier="EditLocation" id="mck-fJ-S6u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ur-Te-dDZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -519,6 +520,6 @@
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tzF-ub-9vD"/>
+        <segue reference="mck-fJ-S6u"/>
     </inferredMetricsTieBreakers>
 </document>
