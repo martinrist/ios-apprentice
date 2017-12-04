@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
     // MARK:- Properties
 
     var managedObjectContext: NSManagedObjectContext!
+    var locations = [Location]()
 
 
     // MARK:- Outlets
@@ -30,6 +31,28 @@ class MapViewController: UIViewController {
     }
 
     @IBAction func showLocations() {
+
+    }
+
+
+    // MARK:- View lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateLocations()
+    }
+
+    
+    // MARK:- Private methods
+    func updateLocations() {
+        mapView.removeAnnotations(locations)
+
+        let entity = Location.entity()
+
+        let fetchRequest = NSFetchRequest<Location>()
+        fetchRequest.entity = entity
+
+        locations = try! managedObjectContext.fetch(fetchRequest)
+        mapView.addAnnotations(locations)
 
     }
 }
