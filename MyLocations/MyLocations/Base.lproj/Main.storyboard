@@ -440,7 +440,7 @@
         <!--Map-->
         <scene sceneID="AeA-DD-s17">
             <objects>
-                <viewController id="fQT-4e-kGb" sceneMemberID="viewController">
+                <viewController id="fQT-4e-kGb" customClass="MapViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rbH-0A-mUz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -454,9 +454,20 @@
                         <viewLayoutGuide key="safeArea" id="Dfs-id-ab2"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="hoz-Ez-6QB">
-                        <barButtonItem key="leftBarButtonItem" title="Locations" id="NVi-AJ-Rbs"/>
-                        <barButtonItem key="rightBarButtonItem" title="User" id="JRv-wm-FhO"/>
+                        <barButtonItem key="leftBarButtonItem" title="Locations" id="NVi-AJ-Rbs">
+                            <connections>
+                                <action selector="showLocations" destination="fQT-4e-kGb" id="LgY-BS-LUh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="User" id="JRv-wm-FhO">
+                            <connections>
+                                <action selector="showUser" destination="fQT-4e-kGb" id="pxw-zG-NrN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="Fmx-MV-mKM" id="1mW-k9-NKW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ur-Te-dDZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
