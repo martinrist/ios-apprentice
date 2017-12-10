@@ -44,7 +44,7 @@ class PodcastFeedLoader: NSObject {
       
       let items = xmlIndexer["rss"]["channel"]["item"]
       
-      let feedItems = items.flatMap { (indexer: XMLIndexer) -> PodcastItem? in
+      let feedItems = items.all.flatMap { (indexer: XMLIndexer) -> PodcastItem? in
         if
           let dateString = indexer["pubDate"].element?.text,
           let date = DateParser.dateWithPodcastDateString(dateString),
