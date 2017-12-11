@@ -41,7 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    
+
+    UNUserNotificationCenter.current().delegate = self
+
     UITabBar.appearance().barTintColor = UIColor.themeGreenColor
     UITabBar.appearance().tintColor = UIColor.white
     registerForPushNotifications()
@@ -66,6 +68,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       print("Permission granted: \(granted)")
 
       guard granted else { return }
+
+      let viewAction = UNNotificationAction(identifier: viewActionIdentifier,
+                                            title: "View",
+                                            options: [.foreground])
+
+      let newsCategory = UNNotificationCategory(identifier: newsCategoryIdentifier,
+                                                actions: [viewAction],
+                                                intentIdentifiers: [],
+                                                options: [])
+
+      UNUserNotificationCenter.current().setNotificationCategories([newsCategory])
+
       self.getNotificationSettings()
     }
   }
@@ -89,5 +103,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
     print("Failed to register: \(error)")
+  }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              didReceive response: UNNotificationResponse,
+                              withCompletionHandler completionHandler: @escaping () -> Void) {
+    let userInfo = response.notification.request.content.userInfo
+    let aps = userInfo["aps"] as! [String: AnyObject]
+
+    if let newsItem = NewsItem.makeNewsItem(aps) {
+      (window?.rootViewController as? UITabBarController)?.selectedIndex = 1
+
+      if response.actionIdentifier == viewActionIdentifier,
+        let url = URL(string: newsItem.link) {
+        let safari = SFSafariViewController(url: url)
+        window?.rootViewController?.present(safari, animated: true, completion: nil)
+      }
+    }
+
+    completionHandler()
   }
 }
