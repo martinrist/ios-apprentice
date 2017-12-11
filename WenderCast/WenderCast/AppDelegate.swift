@@ -29,6 +29,7 @@
  */
 import UIKit
 import SafariServices
+import UserNotifications
 
 fileprivate let viewActionIdentifier = "VIEW_IDENTIFIER"
 fileprivate let newsCategoryIdentifier = "NEWS_CATEGORY"
@@ -43,8 +44,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     UITabBar.appearance().barTintColor = UIColor.themeGreenColor
     UITabBar.appearance().tintColor = UIColor.white
-    
+    registerForPushNotifications()
     return true
+  }
+
+  func registerForPushNotifications() {
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+      (granted, error) in
+      print("Permission granted: \(granted)")
+    }
   }
 }
 
