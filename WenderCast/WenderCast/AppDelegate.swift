@@ -59,7 +59,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     let aps = userInfo["aps"] as! [String: AnyObject]
-    _ = NewsItem.makeNewsItem(aps)
+
+    if aps["content-available"] as? Int == 1 {
+      let podcastStore = PodcastStore.sharedStore
+      podcastStore.refreshItems { didLoadNewItems in
+        completionHandler(didLoadNewItems ? .newData : .noData)
+      }
+    } else {
+      _ = NewsItem.makeNewsItem(aps)
+      completionHandler(.newData)
+    }
   }
 
   func registerForPushNotifications() {
