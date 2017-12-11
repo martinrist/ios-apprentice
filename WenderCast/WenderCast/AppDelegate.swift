@@ -45,7 +45,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UITabBar.appearance().barTintColor = UIColor.themeGreenColor
     UITabBar.appearance().tintColor = UIColor.white
     registerForPushNotifications()
+
+    if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject] {
+      let aps = notification["aps"] as! [String: AnyObject]
+      _ = NewsItem.makeNewsItem(aps)
+      (window?.rootViewController as? UITabBarController)?.selectedIndex = 1
+    }
+
     return true
+  }
+
+  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    let aps = userInfo["aps"] as! [String: AnyObject]
+    _ = NewsItem.makeNewsItem(aps)
   }
 
   func registerForPushNotifications() {
@@ -61,6 +73,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func getNotificationSettings() {
     UNUserNotificationCenter.current().getNotificationSettings { (settings) in
       print("Notification settings: \(settings)")
+      guard settings.authorizationStatus == .authorized else { return }
+      UIApplication.shared.registerForRemoteNotifications()
     }
+  }
+
+  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    let tokenParts = deviceToken.map { data -> String in
+      return String(format: "%02.2hhx", data)
+    }
+
+    let token = tokenParts.joined()
+    print("Device token: \(token)")
+  }
+
+  func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    print("Failed to register: \(error)")
   }
 }
