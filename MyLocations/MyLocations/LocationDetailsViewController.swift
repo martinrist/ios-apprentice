@@ -39,6 +39,7 @@ class LocationDetailsViewController: UITableViewController {
     var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     var placemark: CLPlacemark?
     var date = Date()
+    var image: UIImage?
 
     var managedObjectContext: NSManagedObjectContext!
 
@@ -51,6 +52,8 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var longitudeLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var addPhotoLabel: UILabel!
 
 
     // MARK:- Actions
@@ -142,14 +145,20 @@ class LocationDetailsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        if indexPath.section == 0 && indexPath.row == 0 {
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
             return 88
-        } else if indexPath.section == 2 && indexPath.row == 2 {
-                addressLabel.frame.size = CGSize(width: view.bounds.size.width - 120, height: 10000)
+
+        case (1, _):
+            return imageView.isHidden ? 44 : 280
+
+        case (2, 2):
+            addressLabel.frame.size = CGSize(width: view.bounds.size.width - 120, height: 10000)
             addressLabel.sizeToFit()
             addressLabel.frame.origin.x = view.bounds.size.width - addressLabel.frame.size.width - 16
             return addressLabel.frame.size.height + 20
-        } else {
+
+        default:
             return 44
         }
     }
@@ -212,6 +221,12 @@ class LocationDetailsViewController: UITableViewController {
         return dateFormatter.string(from: date)
     }
 
+    func show(image: UIImage) {
+        imageView.image = image
+        imageView.isHidden = false
+        imageView.frame = CGRect(x: 10, y: 10, width: 260, height: 260)
+        addPhotoLabel.isHidden = true
+    }
 }
 
 
@@ -267,6 +282,11 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
 
     // MARK:- Image Picker Delegates
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        image = info[UIImagePickerControllerEditedImage] as? UIImage
+        if let theImage = image {
+            show(image: theImage)
+        }
+        tableView.reloadData()
         dismiss(animated: true, completion: nil)
     }
 
