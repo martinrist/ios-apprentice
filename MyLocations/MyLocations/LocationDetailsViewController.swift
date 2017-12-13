@@ -40,7 +40,7 @@ class LocationDetailsViewController: UITableViewController {
     var placemark: CLPlacemark?
     var date = Date()
     var image: UIImage?
-
+    var observer: Any!
     var managedObjectContext: NSManagedObjectContext!
 
 
@@ -126,6 +126,8 @@ class LocationDetailsViewController: UITableViewController {
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         gestureRecogniser.cancelsTouchesInView = false
         tableView.addGestureRecognizer(gestureRecogniser)
+
+        listenForBackgroundNotification()
     }
 
     @objc func hideKeyboard(_ gestureRecogniser: UIGestureRecognizer) {
@@ -138,6 +140,12 @@ class LocationDetailsViewController: UITableViewController {
         }
         descriptionTextView.resignFirstResponder()
 
+    }
+
+
+    deinit {
+        print("*** deinit \(self)")
+        NotificationCenter.default.removeObserver(observer)
     }
 
 
@@ -292,5 +300,21 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+
+
+    // MARK:- Background notification
+    func listenForBackgroundNotification() {
+        observer = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidEnterBackground,
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] _ in
+
+                                                if let weakSelf = self {
+                                                    if weakSelf.presentedViewController != nil {
+                                                        weakSelf.dismiss(animated: true, completion: nil)
+                                                    }
+                                                    weakSelf.descriptionTextView.resignFirstResponder()
+                                                }
+        }
     }
 }
