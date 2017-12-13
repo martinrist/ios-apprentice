@@ -34,6 +34,8 @@ class LocationsViewController: UITableViewController {
         return fetchedResultsController
     }()
 
+
+
     // MARK:- View Lifecycle
 
     override func viewDidLoad() {
