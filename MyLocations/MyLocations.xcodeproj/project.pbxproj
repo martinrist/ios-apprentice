@@ -24,6 +24,7 @@
 		3660465E1FBF3553000B3014 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3660465C1FBF3553000B3014 /* Location+CoreDataClass.swift */; };
 		3660465F1FBF3553000B3014 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3660465D1FBF3553000B3014 /* Location+CoreDataProperties.swift */; };
 		3670BD6C1FD58D2100C88EFF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3670BD6B1FD58D2100C88EFF /* MapViewController.swift */; };
+		36B60F461FE809A300DA36EB /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B60F451FE809A300DA36EB /* String+AddText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		3660465C1FBF3553000B3014 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3660465D1FBF3553000B3014 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3670BD6B1FD58D2100C88EFF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		36B60F451FE809A300DA36EB /* String+AddText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				297DEB7E1FC89C60006176C7 /* LocationCell.swift */,
 				3670BD6B1FD58D2100C88EFF /* MapViewController.swift */,
 				365060A91FE1681A00CCA8A2 /* UIImage+Resize.swift */,
+				36B60F451FE809A300DA36EB /* String+AddText.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				29331D9E1FBA1A7B002F5E8E /* Functions.swift in Sources */,
 				296E893D1FB87CD90086EF08 /* AppDelegate.swift in Sources */,
 				3660465E1FBF3553000B3014 /* Location+CoreDataClass.swift in Sources */,
+				36B60F461FE809A300DA36EB /* String+AddText.swift in Sources */,
 				29331D9A1FBA0EC7002F5E8E /* CategoryPickerViewController.swift in Sources */,
 				296E893F1FB87CD90086EF08 /* CurrentLocationViewController.swift in Sources */,
 			);
