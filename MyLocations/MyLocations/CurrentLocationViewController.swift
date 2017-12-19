@@ -33,8 +33,11 @@ class CurrentLocationViewController: UIViewController,
     // MARK:- Outlets
     
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var latitudeTextLabel: UILabel!
     @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var longitudeTextLabel: UILabel!
     @IBOutlet weak var longitudeLabel: UILabel!
+
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var getButton: UIButton!
@@ -205,6 +208,9 @@ class CurrentLocationViewController: UIViewController,
             latitudeLabel.text = String(format: "%.8f", location.coordinate.latitude)
             longitudeLabel.text = String(format: "%.8f", location.coordinate.longitude)
 
+            latitudeTextLabel.isHidden = false
+            longitudeTextLabel.isHidden = false
+
             tagButton.isHidden = false
             messageLabel.text = ""
 
@@ -223,6 +229,9 @@ class CurrentLocationViewController: UIViewController,
             longitudeLabel.text = ""
             addressLabel.text = ""
             tagButton.isHidden = true
+
+            latitudeTextLabel.isHidden = true
+            longitudeTextLabel.isHidden = true
 
             let statusMessage: String
             if let error = lastLocationError as NSError? {
