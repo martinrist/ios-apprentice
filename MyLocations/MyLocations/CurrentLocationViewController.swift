@@ -31,7 +31,8 @@ class CurrentLocationViewController: UIViewController,
 
 
     // MARK:- Outlets
-    
+
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var latitudeTextLabel: UILabel!
     @IBOutlet weak var latitudeLabel: UILabel!
@@ -57,6 +58,10 @@ class CurrentLocationViewController: UIViewController,
         if authStatus == .denied {
             showLocationServicesDeniedAlert()
             return
+        }
+
+        if logoVisible {
+            hideLogoView()
         }
 
         if updatingLocation {
@@ -245,7 +250,8 @@ class CurrentLocationViewController: UIViewController,
             } else if updatingLocation {
                 statusMessage = "Searching..."
             } else {
-                statusMessage = "Tap 'Get My Location' to Start"
+                statusMessage = ""
+                showLogoView()
             }
             messageLabel.text = statusMessage
         }
@@ -285,6 +291,36 @@ class CurrentLocationViewController: UIViewController,
             updateLabels()
         }
     }
+
+
+    var logoVisible = false
+
+    lazy var logoButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setBackgroundImage(UIImage(named: "Logo"),
+                                  for: .normal)
+        button.sizeToFit()
+        button.addTarget(self, action: #selector(getLocation),
+                         for: .touchUpInside)
+        button.center.x = self.view.bounds.midX
+        button.center.y = 220
+        return button
+    }()
+
+    func showLogoView() {
+        if !logoVisible {
+            logoVisible = true
+            containerView.isHidden = true
+            view.addSubview(logoButton)
+        }
+    }
+
+    func hideLogoView() {
+        logoVisible = false
+        containerView.isHidden = false
+        logoButton.removeFromSuperview()
+    }
+
 
 
     // MARK:- Navigation
