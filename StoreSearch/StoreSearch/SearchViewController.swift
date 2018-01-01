@@ -30,3 +30,11 @@ class SearchViewController: UIViewController {
 
 }
 
+// MARK: SearchBarDelegate methods
+
+extension SearchViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("The search text is: '\(searchBar.text!)'")
+    }
+}
