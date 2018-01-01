@@ -30,11 +30,26 @@ class SearchViewController: UIViewController {
 
 }
 
-// MARK: SearchBarDelegate methods
+
+// MARK:- SearchBarDelegate methods
 
 extension SearchViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("The search text is: '\(searchBar.text!)'")
+    }
+}
+
+
+// MARK:- TableViewDelegate and DataSource
+
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }
