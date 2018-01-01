@@ -8,8 +8,13 @@
 
 import UIKit
 
-class
-roller: UIViewController {
+class SearchViewController: UIViewController {
+
+    // MARK:- Outlets
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK:- View lifecycle methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
