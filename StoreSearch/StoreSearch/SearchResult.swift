@@ -8,7 +8,20 @@
 
 import Foundation
 
-class SearchResult {
-    var name = ""
+class SearchResult: Codable, CustomStringConvertible {
     var artistName = ""
+    var trackName = ""
+
+    var name: String {
+        return trackName
+    }
+
+    var description: String {
+        return "Name: \(name), Artist Name: \(artistName)"
+    }
+}
+
+class ResultArray: Codable {
+    var resultCount = 0
+    var results = [SearchResult]()
 }
