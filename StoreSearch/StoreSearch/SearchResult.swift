@@ -9,15 +9,23 @@
 import Foundation
 
 class SearchResult: Codable, CustomStringConvertible {
+
+    var kind = ""
     var artistName = ""
     var trackName = ""
+    var trackPrice = 0.0
+    var currency = ""
+    var artworkUrl60 = ""
+    var artworkUrl100 = ""
+    var trackViewUrl = ""
+    var primaryGenreName = ""
 
     var name: String {
         return trackName
     }
 
     var description: String {
-        return "Name: \(name), Artist Name: \(artistName)"
+        return "Kind: \(kind), Name: \(name), Artist Name: \(artistName)"
     }
 }
 
