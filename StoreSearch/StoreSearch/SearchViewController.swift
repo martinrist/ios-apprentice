@@ -52,6 +52,22 @@ class SearchViewController: UIViewController {
     }
 
 
+    // MARK:- Private Methods
+    func iTunesURL(searchText: String) -> URL {
+        let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        let urlString = String(format: "https://itunes.apple.com/search?term=%@", encodedText)
+        let url = URL(string: urlString)
+        return url!
+    }
+
+    func performStoreRequest(with url: URL) -> String? {
+        do {
+            return try String(contentsOf: url, encoding: .utf8)
+        } catch {
+            print("Download Error: \(error.localizedDescription)")
+            return nil
+        }
+    }
 }
 
 
@@ -61,20 +77,18 @@ extension SearchViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 
-        searchBar.resignFirstResponder()
+        if !searchBar.text!.isEmpty {
 
-        searchResults = []
+            searchBar.resignFirstResponder()
+            searchResults = []
 
-        if searchBar.text! != "justin bieber" {
-            for i in 0...2 {
-                let searchResult = SearchResult()
-                searchResult.name = String(format: "Fake result %d for", i)
-                searchResult.artistName = searchBar.text!
-                searchResults.append(searchResult)
+            let url = iTunesURL(searchText: searchBar.text!)
+            print("URL: '\(url)'")
+            if let jsonString = performStoreRequest(with: url) {
+                print("Received JSON string '\(jsonString)'")
             }
         }
 
-        hasSearched = true
         tableView.reloadData()
     }
 
