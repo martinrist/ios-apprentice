@@ -42,6 +42,8 @@ class SearchViewController: UIViewController {
         tableView.register(nothingFoundCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
 
         tableView.rowHeight = 80
+
+        searchBar.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
