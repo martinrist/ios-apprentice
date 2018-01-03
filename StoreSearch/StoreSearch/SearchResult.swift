@@ -86,3 +86,7 @@ class ResultArray: Codable {
     var resultCount = 0
     var results = [SearchResult]()
 }
+
+func < (lhs: SearchResult, rhs: SearchResult) -> Bool {
+    return lhs.name.localizedStandardCompare(rhs.name) == .orderedAscending
+}
