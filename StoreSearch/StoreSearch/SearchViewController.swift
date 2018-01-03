@@ -149,7 +149,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 as! SearchResultCell
             let searchResult = searchResults[indexPath.row]
             cell.nameLabel.text = searchResult.name
-            cell.artistNameLabel.text = searchResult.artistName
+            if searchResult.artistName.isEmpty {
+                cell.artistNameLabel.text = "Unknown"
+            } else {
+                cell.artistNameLabel.text = String(format: "%@ (%@)",
+                    searchResult.artistName, searchResult.type)
+            }
             return cell
 
         }
