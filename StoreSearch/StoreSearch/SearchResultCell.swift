@@ -10,6 +10,12 @@ import UIKit
 
 class SearchResultCell: UITableViewCell {
 
+
+    // MARK:- Instance variables
+    var downloadTask: URLSessionDownloadTask?
+
+    // MARK:- Outlets
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var artworkImageView: UIImageView!
@@ -38,5 +44,16 @@ class SearchResultCell: UITableViewCell {
             artistNameLabel.text = String(format: "%@ (%@)",
                                     result.artistName, result.type)
         }
+
+        artworkImageView.image = UIImage(named: "Placeholder")
+        if let smallURL = URL(string: result.imageSmall) {
+            downloadTask = artworkImageView.loadImage(url: smallURL)
+        }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        downloadTask?.cancel()
+        downloadTask = nil
     }
 }
