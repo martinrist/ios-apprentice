@@ -54,6 +54,8 @@ class DetailViewController: UIViewController {
         if let _ = searchResult {
             updateUI()
         }
+
+        view.backgroundColor = UIColor.clear
     }
 
 
