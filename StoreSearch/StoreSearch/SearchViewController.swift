@@ -27,6 +27,9 @@ class SearchViewController: UIViewController {
     var dataTask: URLSessionDataTask?
 
     var landscapeVC: LandscapeViewController?
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .all
+    }
 
 
     // MARK:- Outlets
