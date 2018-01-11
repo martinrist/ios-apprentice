@@ -10,6 +10,17 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    // MARK:- Outlets
+
+    @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var artworkImageView: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var artistNameLabel: UILabel!
+    @IBOutlet weak var kindLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var priceButton: UIButton!
+
+
     // MARK:- View lifecycle
 
     required init?(coder aDecoder: NSCoder) {
