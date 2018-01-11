@@ -26,6 +26,8 @@ class SearchViewController: UIViewController {
     var isLoading = false
     var dataTask: URLSessionDataTask?
 
+    var landscapeVC: LandscapeViewController?
+
 
     // MARK:- Outlets
 
@@ -63,6 +65,46 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+
+    // MARK:- Landscape
+
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+
+        switch newCollection.verticalSizeClass {
+        case .compact:
+            showLandscape(with: coordinator)
+        case .regular, .unspecified:
+            hideLandscape(with: coordinator)
+        }
+    }
+
+
+    func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+
+        guard landscapeVC == nil else { return }
+
+        landscapeVC = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController")
+                            as? LandscapeViewController
+        if let controller = landscapeVC {
+            controller.view.frame = view.bounds
+            view.addSubview(controller.view)
+            addChildViewController(controller)
+            controller.didMove(toParentViewController: self)
+        }
+
+    }
+
+
+    func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+
+        if let controller = landscapeVC {
+            controller.willMove(toParentViewController: nil)
+            controller.view.removeFromSuperview()
+            controller.removeFromParentViewController()
+            landscapeVC = nil
+        }
+    }
 
     // MARK:- Navigation
 

@@ -15,6 +15,7 @@
 		360B32E01FFCF4CC00FEC120 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360B32DF1FFCF4CC00FEC120 /* LoadingCell.xib */; };
 		369757712007A56700191BD5 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369757702007A56700191BD5 /* BounceAnimationController.swift */; };
 		369757732007A85300191BD5 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369757722007A85300191BD5 /* SlideOutAnimationController.swift */; };
+		369757782007B6F900191BD5 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369757762007B6F900191BD5 /* LandscapeViewController.swift */; };
 		36D96EB41FFBB79B00673992 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D96EB31FFBB79B00673992 /* SearchResultCell.xib */; };
 		36D96EB81FFBBA9000673992 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D96EB71FFBBA9000673992 /* SearchResultCell.swift */; };
 		36D96EBA1FFBBAC100673992 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D96EB91FFBBAC100673992 /* SearchResult.swift */; };
@@ -35,6 +36,7 @@
 		360B32DF1FFCF4CC00FEC120 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		369757702007A56700191BD5 /* BounceAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		369757722007A85300191BD5 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
+		369757762007B6F900191BD5 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		36D96EB31FFBB79B00673992 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		36D96EB71FFBBA9000673992 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		36D96EB91FFBBAC100673992 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				36DF47972007A2A7001A0139 /* GradientView.swift */,
 				369757702007A56700191BD5 /* BounceAnimationController.swift */,
 				369757722007A85300191BD5 /* SlideOutAnimationController.swift */,
+				369757762007B6F900191BD5 /* LandscapeViewController.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				36D96EB81FFBBA9000673992 /* SearchResultCell.swift in Sources */,
 				36D96EBA1FFBBAC100673992 /* SearchResult.swift in Sources */,
 				369757712007A56700191BD5 /* BounceAnimationController.swift in Sources */,
+				369757782007B6F900191BD5 /* LandscapeViewController.swift in Sources */,
 				36DF4792200786BD001A0139 /* DetailViewController.swift in Sources */,
 				299B4D271FF6A7FB00C147D7 /* AppDelegate.swift in Sources */,
 				36DF47982007A2A7001A0139 /* GradientView.swift in Sources */,
