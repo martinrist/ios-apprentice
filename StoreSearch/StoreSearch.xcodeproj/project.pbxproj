@@ -18,6 +18,7 @@
 		36D96EBA1FFBBAC100673992 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D96EB91FFBBAC100673992 /* SearchResult.swift */; };
 		36D96EBC1FFBBC6E00673992 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D96EBB1FFBBC6E00673992 /* NothingFoundCell.xib */; };
 		36DF4792200786BD001A0139 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DF4791200786BD001A0139 /* DetailViewController.swift */; };
+		36DF4796200789D0001A0139 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DF4795200789D0001A0139 /* DimmingPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		36D96EB91FFBBAC100673992 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		36D96EBB1FFBBC6E00673992 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		36DF4791200786BD001A0139 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		36DF4795200789D0001A0139 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				360B32DF1FFCF4CC00FEC120 /* LoadingCell.xib */,
 				36077EA32006093D0049E9C0 /* UIImageView+DownloadImage.swift */,
 				36DF4791200786BD001A0139 /* DetailViewController.swift */,
+				36DF4795200789D0001A0139 /* DimmingPresentationController.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				299B4D291FF6A7FB00C147D7 /* SearchViewController.swift in Sources */,
+				36DF4796200789D0001A0139 /* DimmingPresentationController.swift in Sources */,
 				36D96EB81FFBBA9000673992 /* SearchResultCell.swift in Sources */,
 				36D96EBA1FFBBAC100673992 /* SearchResult.swift in Sources */,
 				36DF4792200786BD001A0139 /* DetailViewController.swift in Sources */,

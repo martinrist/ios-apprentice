@@ -89,9 +89,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WO2-DA-OCf" userLabel="Pop-up View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WO2-DA-OCf" userLabel="Pop-up View">
                                 <rect key="frame" x="40" y="164" width="240" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wmo-Pl-TDv" userLabel="Close Button">
                                         <rect key="frame" x="4" y="2" width="15" height="22"/>
@@ -106,6 +105,12 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="WO2-DA-OCf" firstAttribute="top" secondItem="eLo-ic-PRH" secondAttribute="top" constant="144" id="3fY-EX-Xfp"/>
+                            <constraint firstItem="WO2-DA-OCf" firstAttribute="centerX" secondItem="ZWq-jK-Anc" secondAttribute="centerX" id="DYX-zG-4ll"/>
+                            <constraint firstItem="WO2-DA-OCf" firstAttribute="centerY" secondItem="ZWq-jK-Anc" secondAttribute="centerY" id="QMc-yl-sjV"/>
+                            <constraint firstItem="WO2-DA-OCf" firstAttribute="leading" secondItem="eLo-ic-PRH" secondAttribute="leading" constant="40" id="TuB-Cz-Pn2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="eLo-ic-PRH"/>
                     </view>
                 </viewController>
