@@ -10,6 +10,10 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    // MARK:- Instance variables
+    var searchResult: SearchResult!
+
+
     // MARK:- Outlets
 
     @IBOutlet weak var popupView: UIView!
@@ -40,6 +44,10 @@ class DetailViewController: UIViewController {
         gestureRecogniser.cancelsTouchesInView = false
         gestureRecogniser.delegate = self
         view.addGestureRecognizer(gestureRecogniser)
+
+        if let _ = searchResult {
+            updateUI()
+        }
     }
 
 
@@ -47,6 +55,37 @@ class DetailViewController: UIViewController {
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
     }
+
+
+    // MARK:- Helper methods
+    func updateUI() {
+        nameLabel.text = searchResult.name
+
+        if searchResult.artistName.isEmpty {
+            artistNameLabel.text = "Unknown"
+        } else {
+            artistNameLabel.text = searchResult.artistName
+        }
+
+        kindLabel.text = searchResult.type
+        genreLabel.text = searchResult.genre
+
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = searchResult.currency
+
+        let priceText: String
+        if searchResult.price == 0 {
+            priceText = "Free"
+        } else if let text = formatter.string(from: searchResult.price as NSNumber) {
+            priceText = text
+        } else {
+            priceText = ""
+        }
+
+        priceButton.setTitle(priceText, for: .normal)
+    }
+
 }
 
 
