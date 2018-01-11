@@ -56,6 +56,12 @@ class DetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func openInStore() {
+        if let url = URL(string: searchResult.storeURL) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
 
     // MARK:- Helper methods
     func updateUI() {
