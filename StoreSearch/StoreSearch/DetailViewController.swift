@@ -10,10 +10,20 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    // MARK:- Internal structures
+
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
+
+
     // MARK:- Instance variables
 
     var searchResult: SearchResult!
     var downloadTask: URLSessionDownloadTask?
+    var dismissStyle = AnimationStyle.fade
+
 
     // MARK:- Outlets
 
@@ -61,6 +71,7 @@ class DetailViewController: UIViewController {
 
     // MARK:- Actions
     @IBAction func close() {
+        dismissStyle = .slide
         dismiss(animated: true, completion: nil)
     }
 
@@ -107,6 +118,8 @@ class DetailViewController: UIViewController {
 }
 
 
+// MARK:- UIViewControllerTransitioningDelegate extension
+
 extension DetailViewController: UIViewControllerTransitioningDelegate {
 
     func presentationController(forPresented presented: UIViewController,
@@ -123,10 +136,17 @@ extension DetailViewController: UIViewControllerTransitioningDelegate {
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return SlideOutAnimationController()
+        switch dismissStyle {
+        case .slide:
+            return SlideOutAnimationController()
+        case .fade:
+            return FadeOutAnimationController()
+        }
     }
 }
 
+
+// MARK:- UIGestureRecognizerDelegate extension
 
 extension DetailViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
