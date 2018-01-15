@@ -21,9 +21,17 @@ class DetailViewController: UIViewController {
 
     // MARK:- Instance variables
 
-    var searchResult: SearchResult!
+    var searchResult: SearchResult! {
+        didSet {
+            if isViewLoaded {
+                updateUI()
+            }
+        }
+    }
+
     var downloadTask: URLSessionDownloadTask?
     var dismissStyle = AnimationStyle.fade
+    var isPopUp = false
 
 
     // MARK:- Outlets
@@ -56,17 +64,23 @@ class DetailViewController: UIViewController {
                                  blue: 160/255, alpha: 1)
         popupView.layer.cornerRadius = 10
 
-        let gestureRecogniser = UITapGestureRecognizer(target: self,
+
+        if isPopUp {
+            let gestureRecogniser = UITapGestureRecognizer(target: self,
                                                        action: #selector(close))
-        gestureRecogniser.cancelsTouchesInView = false
-        gestureRecogniser.delegate = self
-        view.addGestureRecognizer(gestureRecogniser)
+            gestureRecogniser.cancelsTouchesInView = false
+            gestureRecogniser.delegate = self
+            view.addGestureRecognizer(gestureRecogniser)
+            view.backgroundColor = UIColor.clear
+        } else {
+            view.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
+            popupView.isHidden = true
+        }
 
         if let _ = searchResult {
             updateUI()
         }
 
-        view.backgroundColor = UIColor.clear
     }
 
 
@@ -114,6 +128,8 @@ class DetailViewController: UIViewController {
         if let largeURL = URL(string: searchResult.imageLarge) {
             downloadTask = artworkImageView.loadImage(url: largeURL)
         }
+
+        popupView.isHidden = false
     }
 
 }
