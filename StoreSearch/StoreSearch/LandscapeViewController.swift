@@ -90,7 +90,7 @@ class LandscapeViewController: UIViewController {
             case .notSearchedYet:
                 break
             case .loading:
-                break
+                showSpinner()
             case .noResults:
                 break
             case .results(let list):
@@ -175,7 +175,6 @@ class LandscapeViewController: UIViewController {
         pageControl.currentPage = 0
     }
 
-
     private func downloadImage(for searchResult: SearchResult,
                                andPlaceOn button: UIButton) {
         if let url = URL(string: searchResult.imageSmall) {
@@ -194,6 +193,36 @@ class LandscapeViewController: UIViewController {
             downloads.append(task)
         }
     }
+
+
+
+    // MARK:- Spinner
+
+    func searchResultsReceived() {
+        hideSpinner()
+
+        switch search.state {
+        case .notSearchedYet, .loading, .noResults:
+            break
+        case .results(let list):
+            tileButtons(list)
+        }
+    }
+
+    private func showSpinner() {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        spinner.center = CGPoint(x: scrollView.bounds.midX + 0.5,
+                                 y: scrollView.bounds.midY + 0.5)
+        spinner.tag = 1000
+        view.addSubview(spinner)
+        spinner.startAnimating()
+    }
+
+    private func hideSpinner() {
+        view.viewWithTag(1000)?.removeFromSuperview()
+    }
+
+
 }
 
 
