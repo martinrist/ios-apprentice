@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import MessageUI
 
 class DetailViewController: UIViewController {
 
@@ -87,7 +88,17 @@ class DetailViewController: UIViewController {
     }
 
 
+    // MARK:- Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowMenu" {
+            let controller = segue.destination as! MenuViewController
+            controller.delegate = self
+        }
+    }
+
     // MARK:- Actions
+
     @IBAction func close() {
         dismissStyle = .slide
         dismiss(animated: true, completion: nil)
@@ -171,5 +182,32 @@ extension DetailViewController: UIViewControllerTransitioningDelegate {
 extension DetailViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return (touch.view === self.view)
+    }
+}
+
+
+// MARK:- MenuViewControllerDelegate extension
+
+extension DetailViewController: MenuViewControllerDelegate {
+    func menuViewControllerSendEmail(_ controller: MenuViewController) {
+        dismiss(animated: true) {
+            if MFMailComposeViewController.canSendMail() {
+                let controller = MFMailComposeViewController()
+                controller.mailComposeDelegate = self
+                controller.setSubject(NSLocalizedString("Support Request", comment: "Email subject"))
+                controller.setToRecipients(["mlr-apple@martinrist.com"])
+                self.present(controller, animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+
+
+// MARK:- MFMailComposeViewControllerDelegate extension
+
+extension DetailViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
     }
 }
