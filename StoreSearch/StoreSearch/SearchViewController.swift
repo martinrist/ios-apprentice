@@ -6,6 +6,7 @@
 //  Copyright © 2017 Martin Rist. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class SearchViewController: UIViewController {
@@ -141,12 +142,12 @@ class SearchViewController: UIViewController {
     // MARK:- Private Methods
 
     func showNetworkError() {
-        let alert = UIAlertController(title: "Whoops...",
-                                      message: "There was an error accessing the iTunes Store." +
-                                                " Please try again.",
+        let alert = UIAlertController(title: NSLocalizedString("Whoops...", comment: "Network error title"),
+                                      message: NSLocalizedString("There was an error accessing the iTunes Store." +
+                                        " Please try again.", comment: "Network error message"),
                                       preferredStyle: .alert)
 
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let action = UIAlertAction(title: NSLocalizedString("OK", comment: "Network error button title"), style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }

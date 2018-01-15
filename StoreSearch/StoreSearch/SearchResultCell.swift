@@ -6,6 +6,7 @@
 //  Copyright © 2018 Martin Rist. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class SearchResultCell: UITableViewCell {
@@ -39,7 +40,7 @@ class SearchResultCell: UITableViewCell {
         nameLabel.text = result.name
 
         if result.artistName.isEmpty {
-            artistNameLabel.text = "Unknown"
+            artistNameLabel.text = NSLocalizedString("Unknown", comment: "Unknown artist name")
         } else {
             artistNameLabel.text = String(format: "%@ (%@)",
                                     result.artistName, result.type)
