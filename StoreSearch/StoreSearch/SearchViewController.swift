@@ -60,7 +60,9 @@ class SearchViewController: UIViewController {
 
         tableView.rowHeight = 80
 
-        searchBar.becomeFirstResponder()
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            searchBar.becomeFirstResponder()
+        }
 
         title = NSLocalizedString("Search", comment: "split view master button")
     }
