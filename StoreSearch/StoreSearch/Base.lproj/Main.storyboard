@@ -179,6 +179,11 @@
                                     <constraint firstItem="p7D-IP-8CN" firstAttribute="top" secondItem="WO2-DA-OCf" secondAttribute="top" constant="8" id="szq-pb-8mF"/>
                                     <constraint firstItem="QzV-e1-SQD" firstAttribute="leading" secondItem="Oo4-2c-gk8" secondAttribute="leading" id="tov-x0-bEo"/>
                                 </constraints>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="subviews">
+                                        <exclude reference="Wmo-Pl-TDv"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
