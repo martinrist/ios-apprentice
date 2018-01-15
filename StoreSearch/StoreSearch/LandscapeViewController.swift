@@ -71,6 +71,17 @@ class LandscapeViewController: UIViewController {
     }
 
 
+    // MARK:- Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            if case .results(let list) = search.state {
+                let detailViewController = segue.destination as! DetailViewController
+                let searchResult = list[(sender as! UIButton).tag - 2000]
+                detailViewController.searchResult = searchResult
+            }
+        }
+    }
+
     // MARK:- Layout
 
     override func viewWillLayoutSubviews() {
@@ -141,7 +152,7 @@ class LandscapeViewController: UIViewController {
         var row = 0
         var column = 0
         var x = marginX
-        for (_, result) in searchResults.enumerated() {
+        for (index, result) in searchResults.enumerated() {
             let button = UIButton(type: .custom)
             button.setBackgroundImage(UIImage(named: "LandscapeButton"),
                                       for: .normal)
@@ -150,6 +161,8 @@ class LandscapeViewController: UIViewController {
                                   y: marginY + CGFloat(row)*itemHeight + paddingVert,
                                   width: buttonWidth,
                                   height: buttonHeight)
+            button.tag = 2000 + index
+            button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
             scrollView.addSubview(button)
 
             row += 1
@@ -173,6 +186,10 @@ class LandscapeViewController: UIViewController {
 
         pageControl.numberOfPages = numPages
         pageControl.currentPage = 0
+    }
+
+    @objc func buttonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "ShowDetail", sender: sender)
     }
 
     private func downloadImage(for searchResult: SearchResult,
