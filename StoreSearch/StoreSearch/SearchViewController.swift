@@ -59,6 +59,8 @@ class SearchViewController: UIViewController {
         tableView.rowHeight = 80
 
         searchBar.becomeFirstResponder()
+
+        title = NSLocalizedString("Search", comment: "split view master button")
     }
 
     override func didReceiveMemoryWarning() {
